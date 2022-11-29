@@ -18,10 +18,15 @@ namespace SquareChaser
         Rectangle player1 = new Rectangle(100, 120, 20, 20);
         Rectangle player2 = new Rectangle(100, 250, 20, 20);
         Rectangle boundaries = new Rectangle(50, 40, 350, 330);
+        Rectangle point = new Rectangle(200, 210, 10, 10);
+        Rectangle speedUp = new Rectangle(210, 230, 10, 10);
+
 
         Pen cyanPen = new Pen(Color.Cyan, 8);
         SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
         SolidBrush pinkBrush = new SolidBrush(Color.Pink);
+        SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+        SolidBrush limeBrush = new SolidBrush(Color.LightGreen);
 
         bool wDown = false;
         bool sDown = false;
@@ -37,6 +42,8 @@ namespace SquareChaser
         int player1Score = 0;
         int player2Score = 0;
         int playerSpeed = 4;
+        int location;
+        int x, y;
 
 
         public Form1()
@@ -113,10 +120,16 @@ namespace SquareChaser
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(pinkBrush, player2);
             e.Graphics.DrawRectangle(cyanPen, boundaries);
+            e.Graphics.FillRectangle(yellowBrush, point);
+            e.Graphics.FillRectangle(limeBrush, speedUp);
+
+
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            Random randGen = new Random();
+
             //move player 1
             if (wDown == true && player1.Y > 0)
             {
@@ -145,16 +158,43 @@ namespace SquareChaser
 
             if (downArrowDown == true && player2.Y < this.Height - player2.Height)
             {
-                player2.Y += playerSpeed;
+                player2.Y += playerSpeed; 
             }
             if (rightDown == true && player2.X < this.Width - player1.Width)
             {
                 player2.X += playerSpeed;
             }
-            if (leftDown == true && player2.X < this.Width - player2.Width)
+            if (leftDown == true && player2.X < this.Width - player2.Width) 
             {
                 player2.X -= playerSpeed;
             }
+            
+
+            //Check if point was interacted with and move it
+            if (player1.Y < 40 || player1.Y > this.Height - player1.Height)
+            {
+                player1.Y *= -1;
+            }
+
+            if (player1.X < 50 || player1.X > this.Width - player1.Width)
+            {
+                player1.X *= -1;
+            }
+
+
+            //player 1 intersects with point add 1 to player 1 points if so
+            if (player1.IntersectsWith(point))
+            {
+                player1Score++;
+                p2ScoreLabel.Text = $"{player1Score}";
+
+                point.X = randGen.Next(x,y);
+                point.Y = randGen.Next(x, y);
+            }
+
+
+
+            Refresh();
         }
     }
 }
