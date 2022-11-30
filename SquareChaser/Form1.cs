@@ -25,7 +25,7 @@ namespace SquareChaser
         Pen cyanPen = new Pen(Color.Cyan, 8);
         SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
         SolidBrush pinkBrush = new SolidBrush(Color.Pink);
-        SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+        SolidBrush coralBrush = new SolidBrush(Color.Coral);
         SolidBrush limeBrush = new SolidBrush(Color.LightGreen);
 
         bool wDown = false;
@@ -120,8 +120,8 @@ namespace SquareChaser
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(pinkBrush, player2);
             e.Graphics.DrawRectangle(cyanPen, boundaries);
-            e.Graphics.FillRectangle(yellowBrush, point);
-            e.Graphics.FillRectangle(limeBrush, speedUp);
+            e.Graphics.FillRectangle(limeBrush, point);
+            e.Graphics.FillRectangle(coralBrush, speedUp);
 
 
         }
@@ -131,54 +131,42 @@ namespace SquareChaser
             Random randGen = new Random();
 
             //move player 1
-            if (wDown == true && player1.Y > 0)
+            if (wDown == true && player1.Y > 47)
             {
                 player1.Y -= playerSpeed;
             }
 
-            if (sDown == true && player1.Y < this.Height - player1.Height)
+            if (sDown == true && player1.Y < 345)
             {
                 player1.Y += playerSpeed;
             }
 
-            if (dDown == true && player1.X < this.Width - player1.Width)
+            if (dDown == true && player1.X < 375)
             {
                 player1.X += playerSpeed;
             }
-            if (aDown == true && player1.X < this.Width - player1.Width)
+            if (aDown == true && player1.X > 55)
             {
                 player1.X -= playerSpeed;
             }
 
             //move player 2
-            if (upArrowDown == true && player2.Y > 0)
+            if (upArrowDown == true && player2.Y > 45)
             {
                 player2.Y -= playerSpeed;
             }
 
-            if (downArrowDown == true && player2.Y < this.Height - player2.Height)
+            if (downArrowDown == true && player2.Y < 345)
             {
                 player2.Y += playerSpeed; 
             }
-            if (rightDown == true && player2.X < this.Width - player1.Width)
+            if (rightDown == true && player2.X < 375)
             {
                 player2.X += playerSpeed;
             }
-            if (leftDown == true && player2.X < this.Width - player2.Width) 
+            if (leftDown == true && player2.X > 55)  
             {
                 player2.X -= playerSpeed;
-            }
-            
-
-            //Check if point was interacted with and move it
-            if (player1.Y < 40 || player1.Y > this.Height - player1.Height)
-            {
-                player1.Y *= -1;
-            }
-
-            if (player1.X < 50 || player1.X > this.Width - player1.Width)
-            {
-                player1.X *= -1;
             }
 
 
@@ -188,8 +176,32 @@ namespace SquareChaser
                 player1Score++;
                 p2ScoreLabel.Text = $"{player1Score}";
 
-                point.X = randGen.Next(x,y);
-                point.Y = randGen.Next(x, y);
+                point.X = randGen.Next(60, 365);
+                point.Y = randGen.Next(60, 365);
+            }
+
+            //player 2 intersects with point add 1 to player 1 points if so
+            if (player2.IntersectsWith(point))
+            {
+                player2Score++;
+                p2ScoreLabel.Text = $"{player2Score}";
+
+                point.X = randGen.Next(60, 365);
+                point.Y = randGen.Next(60, 365);
+            }
+
+            //player 1 intersects with speed up increase speed by 1
+            if (player1.IntersectsWith(speedUp))
+            {
+                point.X = randGen.Next(60, 365);
+                point.Y = randGen.Next(60, 365);
+            }
+
+            //player 2 intersects with speed up increase speed by 1
+            if (player2.IntersectsWith(speedUp))
+            {
+                point.X = randGen.Next(60, 365);
+                point.Y = randGen.Next(60, 365);
             }
 
 
