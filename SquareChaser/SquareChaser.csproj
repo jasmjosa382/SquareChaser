@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +79,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\270302__littlerobotsoundfactory__collect-point-02.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\482652__joao-janz__bonus-points-1-2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\135517__chriddof__zoom-up-1-quicker-delay.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\391539__unlistenable__electro-win-sound.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

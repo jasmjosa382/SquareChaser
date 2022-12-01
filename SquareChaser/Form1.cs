@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 //Square Chaser Game
 //November 2022
@@ -178,6 +179,8 @@ namespace SquareChaser
 
                 point.X = randGen.Next(60, 365);
                 point.Y = randGen.Next(60, 365);
+                SoundPlayer pointUp = new SoundPlayer(Properties.Resources.pointUp);
+                pointUp.Play();
             }
 
             if (player2.IntersectsWith(point))
@@ -187,6 +190,8 @@ namespace SquareChaser
 
                 point.X = randGen.Next(60, 365);
                 point.Y = randGen.Next(60, 365);
+                SoundPlayer pointUp = new SoundPlayer(Properties.Resources.pointUp);
+                pointUp.Play();
             }
 
             //if either player intersects with speed up increase speed by 1
@@ -196,6 +201,8 @@ namespace SquareChaser
 
                 speedUp.X = randGen.Next(60, 365);
                 speedUp.Y = randGen.Next(60, 365);
+                SoundPlayer speed = new SoundPlayer(Properties.Resources.speed);
+                speed.Play();
             }
 
             if (player2.IntersectsWith(speedUp))
@@ -204,6 +211,8 @@ namespace SquareChaser
 
                 speedUp.X = randGen.Next(60, 365);
                 speedUp.Y = randGen.Next(60, 365);
+                SoundPlayer speed = new SoundPlayer(Properties.Resources.speed);
+                speed.Play();
             }
 
             // check score and stop game if either player is at 5 points
@@ -212,12 +221,16 @@ namespace SquareChaser
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player 1 Wins!!";
+                SoundPlayer win = new SoundPlayer(Properties.Resources.win);
+                win.Play();
             }
             else if (player2Score == 5)
             {
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player 2 Wins!!";
+                SoundPlayer win = new SoundPlayer(Properties.Resources.win);
+                win.Play();
             }
 
 
