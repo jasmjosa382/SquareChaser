@@ -92,5 +92,8 @@
   <ItemGroup>
     <None Include="Resources\391539__unlistenable__electro-win-sound.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\running.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

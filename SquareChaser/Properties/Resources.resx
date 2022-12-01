@@ -121,6 +121,9 @@
   <data name="pointUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\482652__joao-janz__bonus-points-1-2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="running" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\running.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="speed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\270302__littlerobotsoundfactory__collect-point-02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
