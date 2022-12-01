@@ -38,10 +38,10 @@ namespace SquareChaser
         bool leftDown = false;
         bool rightDown = false;
 
-        int playerTurn = 1;
         int player1Score = 0;
         int player2Score = 0;
-        int playerSpeed = 4;
+        int player1Speed = 4;
+        int player2Speed = 4;
         int location;
         int x, y;
 
@@ -133,44 +133,44 @@ namespace SquareChaser
             //move player 1
             if (wDown == true && player1.Y > 47)
             {
-                player1.Y -= playerSpeed;
+                player1.Y -= player1Speed;
             }
 
             if (sDown == true && player1.Y < 345)
             {
-                player1.Y += playerSpeed;
+                player1.Y += player1Speed;
             }
 
             if (dDown == true && player1.X < 375)
             {
-                player1.X += playerSpeed;
+                player1.X += player1Speed;
             }
             if (aDown == true && player1.X > 55)
             {
-                player1.X -= playerSpeed;
+                player1.X -= player1Speed;
             }
 
             //move player 2
             if (upArrowDown == true && player2.Y > 45)
             {
-                player2.Y -= playerSpeed;
+                player2.Y -= player2Speed;
             }
 
             if (downArrowDown == true && player2.Y < 345)
             {
-                player2.Y += playerSpeed; 
+                player2.Y += player2Speed; 
             }
             if (rightDown == true && player2.X < 375)
             {
-                player2.X += playerSpeed;
+                player2.X += player2Speed;
             }
             if (leftDown == true && player2.X > 55)  
             {
-                player2.X -= playerSpeed;
+                player2.X -= player2Speed;
             }
 
 
-            //player 1 intersects with point add 1 to player 1 points if so
+            //if either player intersects with point add 1 to player points 
             if (player1.IntersectsWith(point))
             {
                 player1Score++;
@@ -180,7 +180,6 @@ namespace SquareChaser
                 point.Y = randGen.Next(60, 365);
             }
 
-            //player 2 intersects with point add 1 to player 1 points if so
             if (player2.IntersectsWith(point))
             {
                 player2Score++;
@@ -190,18 +189,35 @@ namespace SquareChaser
                 point.Y = randGen.Next(60, 365);
             }
 
-            //player 1 intersects with speed up increase speed by 1
+            //if either player intersects with speed up increase speed by 1
             if (player1.IntersectsWith(speedUp))
             {
-                point.X = randGen.Next(60, 365);
-                point.Y = randGen.Next(60, 365);
+                player1Speed++;
+
+                speedUp.X = randGen.Next(60, 365);
+                speedUp.Y = randGen.Next(60, 365);
             }
 
-            //player 2 intersects with speed up increase speed by 1
             if (player2.IntersectsWith(speedUp))
             {
-                point.X = randGen.Next(60, 365);
-                point.Y = randGen.Next(60, 365);
+                player2Speed++;
+
+                speedUp.X = randGen.Next(60, 365);
+                speedUp.Y = randGen.Next(60, 365);
+            }
+
+            // check score and stop game if either player is at 5 points
+            if (player1Score == 5)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 1 Wins!!";
+            }
+            else if (player2Score == 5)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 2 Wins!!";
             }
 
 
